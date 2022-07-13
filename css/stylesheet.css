@@ -75,16 +75,22 @@ button:active {
 
 /* INSTRUCTIONS PAGE ================================================*/
 .instructions-page {
-    background-color: blue;
+    background-color: rgb(5, 5, 124);
 }
-.instructions {
-    margin: 10px;
-    width: 90%;
+.instructions-page .instructions {
+    margin: 4rem 3rem 2rem 3rem;
+    width: 70%;
     height: auto;
 }
-.instructions img {
+.instructions-page .instructions img {
     width: 100%;
     object-fit: cover;
+}
+.instructions-page .nav {
+    padding: 0;
+}
+.instructions-page .nav .instructions-start-btn button {
+    background-color: rgb(123, 211, 113);
 }
 /* RACE PAGE ========================================================*/
 .roads {
