@@ -14,9 +14,9 @@ body {
     align-items: center;
     font-family: 'Krabby Patty';
     color: #d24141;
-    height: 100vh;
+    /* height: 100vh; */
 }
-
+/* HOME PAGE */
 h1 {
     font-size: 6rem;
 }
@@ -33,6 +33,7 @@ h1 {
 
 .home-title img {
     width: 100%;
+    transform: rotate(15deg)
 }
 
 .home-bg {
@@ -40,31 +41,47 @@ h1 {
     background-size: cover;
     background-repeat: no-repeat;
 }
-.verticalLine {
-    position: fixed;
-    top: 0;
-    left: 50%;
-    bottom: 0;
-    margin: 0;
-    border: none; 
-    border-right: solid 3px black; 
-    z-index: 10;
+
+/* RACE PAGE */
+.roads {
+    display: flex;
+    width: 100%;
+    justify-content: center;
+    align-items: center;
+
 }
 
-.race-bg {
+/* .race-bg {
     background-image: url("/images/sand-bg.jpeg");
     background-size: cover;
     background-repeat: no-repeat;
-} 
+}  */
 
+.player1,
+.player2 {
+    display: flex;
+    width: 50%;
+    justify-content: center;
+    align-items: center;
+}
+.player1 {
+    background-color: rgb(198, 55, 55);
+}
+.player2 {
+    background-color: rgb(57, 109, 167);
+}
 .road {
     width: 350px;
-    height: 100vh; 
+    height: 90vh; 
     background-color: rgb(27, 27, 27);
-    margin: auto;
-    position: relative; 
     border-left: 5px dashed white; 
     border-right: 5px dashed white; 
+}
+
+.nav {
+    display: flex;
+    justify-content: center;
+    padding: 40px;
 }
 
 
