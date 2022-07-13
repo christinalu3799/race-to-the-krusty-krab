@@ -13,8 +13,9 @@ body {
     position: relative;
     align-items: center;
     font-family: 'Krabby Patty';
-    color: #d24141;
-    /* height: 100vh; */
+    color: rgb(225, 203, 5);
+    filter: drop-shadow(-4px 4px black);
+    height: 100vh;
 }
 /* HOME PAGE */
 h1 {
@@ -42,7 +43,42 @@ h1 {
     background-repeat: no-repeat;
 }
 
-/* RACE PAGE */
+nav.home-nav {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    position: absolute; 
+    right: 0;
+    bottom: 0;
+}
+.home-start-btn, 
+.home-instructions-btn {
+    margin: 0 30px 30px 0;
+}
+.home-start-btn button, 
+.home-instructions-btn button {
+    cursor: pointer;
+    transition: transform 0.2s;
+}
+.home-start-btn button:hover, 
+.home-instructions-btn button:hover {
+    transform: translateX(3px) translateY(-3px);
+    
+}
+.home-start-btn button:active, 
+.home-instructions-btn button:active {
+    transform: translateX(-4px) translateY(4px);
+    
+}
+button {
+    font-family: 'Krabby Patty';
+    font-size: 3rem;
+    border: none;
+    background-color: rgb(225, 203, 5);
+    border-radius: 5px;
+}
+
+/* RACE PAGE ========================================================*/
 .roads {
     display: flex;
     width: 100%;
