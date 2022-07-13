@@ -1,0 +1,17 @@
+.container {
+    display: flex;
+    background-color: rgb(83, 137, 83);
+    background-size: cover;
+}
+
+.road {
+    width: 350px;
+    height: 100vh; 
+    background-color: rgb(27, 27, 27);
+    margin: auto;
+    position: relative; 
+    border-left: 5px dashed white; 
+    border-right: 5px dashed white; 
+}
+
+
