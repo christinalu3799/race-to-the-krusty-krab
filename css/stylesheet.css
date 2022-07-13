@@ -1,10 +1,44 @@
 * {
     margin: 0;
 }
+
+@font-face {
+    font-family: 'Krabby Patty';
+    src: url(Krabby-Patty.ttf);
+  }
 body {
     display: flex; 
     flex-direction: column;
-    
+    justify-content: center;
+    position: relative;
+    align-items: center;
+    font-family: 'Krabby Patty';
+    color: #d24141;
+    height: 100vh;
+}
+
+h1 {
+    font-size: 6rem;
+}
+.home-title {
+    position: absolute;
+    bottom: 40px;
+    left: 40px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 30%;
+}
+
+.home-title img {
+    width: 100%;
+}
+
+.home-bg {
+    background-image: url("/images/home-bg.png");
+    background-size: cover;
+    background-repeat: no-repeat;
 }
 .verticalLine {
     position: fixed;
@@ -16,13 +50,11 @@ body {
     border-right: solid 3px black; 
     z-index: 10;
 }
-.container {
-    display: flex;
-}
 
 .race-bg {
     background-image: url("/images/sand-bg.jpeg");
     background-size: cover;
+    background-repeat: no-repeat;
 } 
 
 .road {
