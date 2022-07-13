@@ -14,12 +14,13 @@ body {
     align-items: center;
     font-family: 'Krabby Patty';
     color: rgb(225, 203, 5);
-    filter: drop-shadow(-4px 4px black);
-    height: 100vh;
+    
+    
 }
 /* HOME PAGE */
 h1 {
     font-size: 6rem;
+    filter: drop-shadow(-4px 4px black);
 }
 .home-title {
     position: absolute;
@@ -38,6 +39,7 @@ h1 {
 }
 
 .home-bg {
+    height: 100vh;
     background-image: url("/images/home-bg.png");
     background-size: cover;
     background-repeat: no-repeat;
@@ -51,33 +53,39 @@ nav.home-nav {
     right: 0;
     bottom: 0;
 }
-.home-start-btn, 
-.home-instructions-btn {
+button {
     margin: 0 30px 30px 0;
-}
-.home-start-btn button, 
-.home-instructions-btn button {
+    padding: 5px;
     cursor: pointer;
     transition: transform 0.2s;
-}
-.home-start-btn button:hover, 
-.home-instructions-btn button:hover {
-    transform: translateX(3px) translateY(-3px);
-    
-}
-.home-start-btn button:active, 
-.home-instructions-btn button:active {
-    transform: translateX(-4px) translateY(4px);
-    
-}
-button {
     font-family: 'Krabby Patty';
     font-size: 3rem;
     border: none;
     background-color: rgb(225, 203, 5);
     border-radius: 5px;
+    filter: drop-shadow(-4px 4px black);
+}
+button:hover {
+    transform: translateX(3px) translateY(-3px);
+    
+}
+button:active {
+    transform: translateX(-4px) translateY(4px);
 }
 
+/* INSTRUCTIONS PAGE ================================================*/
+.instructions-page {
+    background-color: blue;
+}
+.instructions {
+    margin: 10px;
+    width: 90%;
+    height: auto;
+}
+.instructions img {
+    width: 100%;
+    object-fit: cover;
+}
 /* RACE PAGE ========================================================*/
 .roads {
     display: flex;
@@ -86,12 +94,6 @@ button {
     align-items: center;
 
 }
-
-/* .race-bg {
-    background-image: url("/images/sand-bg.jpeg");
-    background-size: cover;
-    background-repeat: no-repeat;
-}  */
 
 .player1,
 .player2 {
@@ -118,6 +120,17 @@ button {
     display: flex;
     justify-content: center;
     padding: 40px;
+}
+
+.race-bg .nav a {
+    display: flex;
+    text-decoration: none;
+    justify-content: center;
+    align-items: center;
+}
+.race-bg .nav button {
+    width: fit-content;
+    margin: 0;
 }
 
 
