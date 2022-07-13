@@ -4,7 +4,7 @@
 body {
     display: flex; 
     flex-direction: column;
-    background-color: rgb(83, 137, 83);
+    
 }
 .verticalLine {
     position: fixed;
@@ -18,9 +18,12 @@ body {
 }
 .container {
     display: flex;
-    
-    
 }
+
+.race-bg {
+    background-image: url("/images/sand-bg.jpeg");
+    background-size: cover;
+} 
 
 .road {
     width: 350px;
