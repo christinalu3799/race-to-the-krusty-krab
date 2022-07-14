@@ -120,12 +120,6 @@ button:active {
     border-right: 5px dashed white; 
 }
 
-.race-page .roads .patty-wagon {
-    position: absolute;
-    bottom: 0px;
-    right: 0px;
-}
-
 .race-page .roads .patty-wagon img {
     width: 70%;
 }
