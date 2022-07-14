@@ -1,7 +1,11 @@
+// Assign patty wagons to variables
 let pattyWagon1 = document.querySelector('.patty-wagon-1');
 let pattyWagon2 = document.querySelector('.patty-wagon-2');
 
+// Create a player object to define the speed of the cars
 let player = {speed:10};
+
+// Create a keys object to keep track of the keys the players will use to move the cars
 let keys = {
     // PLAYER 1 CONTROLS
     w: false, 
@@ -15,12 +19,17 @@ let keys = {
     ArrowLeft: false,
 };
 
+// Event listeners used to track when keys are pressed
 document.addEventListener("keydown", pressOn);
 document.addEventListener("keyup", pressOff);
 
+// This function allows the cars to move according to the keypress
+// When the player holds the key, the car will continue to move
 function playGame() {
     console.log('inplay');
     
+    // This block will only execute when player.start === true 
+    // Should be assigned to true as soon as the page loads
     if(player.start){
         // PLAYER 1 CONTROLS
         if(keys.w) {
@@ -54,9 +63,12 @@ function playGame() {
         pattyWagon2.style.left = player.x2 + 'px';
         pattyWagon2.style.top = player.y2 + 'px';
 
+        // Calling the playGame function again to keep the cars moving
         window.requestAnimationFrame(playGame);
     }
 }
+
+// Functions to keep track of which keys are being pressed and which keys are not being pressed 
 function pressOn(e) { 
     e.preventDefault();
     keys[e.key] = true;
@@ -67,6 +79,8 @@ function pressOff(e) {
     keys[e.key] = false;
     console.log(keys);
 }
+
+// This function loads as soon as the player gets onto the game page
 function start() {
     player.start = true;
     window.requestAnimationFrame(playGame);
@@ -76,43 +90,3 @@ function start() {
     player.y2 = pattyWagon2.offsetTop;
     console.log(player);
 }
-
-// window.addEventListener('load', () => {
-//     pattyWagon1.style.position = 'absolute';
-//     pattyWagon1.style.left = 0;
-//     pattyWagon1.style.bottom = 0;
-//     pattyWagon2.style.position = 'absolute';
-//     pattyWagon2.style.left = 0;
-//     pattyWagon2.style.bottom = 0;
-// });
-
-// document.addEventListener('keydown', (e) => {
-
-//     console.log(e);
-//     switch (e.key) {
-//         case 'a':
-//             pattyWagon1.style.left = parseInt(pattyWagon1.style.left) - moveBy + 'px';
-//             break;
-//         case 'd':
-//             pattyWagon1.style.left = parseInt(pattyWagon1.style.left) + moveBy + 'px';
-//             break;
-//         case 'w':
-//             pattyWagon1.style.bottom = parseInt(pattyWagon1.style.bottom) + moveBy + 'px';
-//             break;
-//         case 's':
-//             pattyWagon1.style.bottom = parseInt(pattyWagon1.style.bottom) - moveBy + 'px';
-//             break;
-//         case 'ArrowLeft':
-//             pattyWagon2.style.left = parseInt(pattyWagon2.style.left) - moveBy + 'px';
-//             break;
-//         case 'ArrowRight':
-//             pattyWagon2.style.left = parseInt(pattyWagon2.style.left) + moveBy + 'px';
-//             break;
-//         case 'ArrowUp':
-//             pattyWagon2.style.bottom = parseInt(pattyWagon2.style.bottom) + moveBy + 'px';
-//             break;
-//         case 'ArrowDown':
-//             pattyWagon2.style.bottom = parseInt(pattyWagon2.style.bottom) - moveBy + 'px';
-//             break;
-//     }
-// });
