@@ -14,10 +14,8 @@ body {
     align-items: center;
     font-family: 'Krabby Patty';
     color: rgb(225, 203, 5);
-    
-    
 }
-/* HOME PAGE */
+/* HOME PAGE ================================================*/
 h1 {
     font-size: 6rem;
     filter: drop-shadow(-4px 4px black);
@@ -93,12 +91,16 @@ button:active {
     background-color: rgb(123, 211, 113);
 }
 /* RACE PAGE ========================================================*/
-.roads {
+.race-page {
+    background-image: url(/images/sand-bg.jpeg);
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+.race-page .roads {
     display: flex;
     width: 100%;
     justify-content: center;
     align-items: center;
-
 }
 
 .player1,
@@ -108,33 +110,39 @@ button:active {
     justify-content: center;
     align-items: center;
 }
-.player1 {
-    background-color: rgb(198, 55, 55);
-}
-.player2 {
-    background-color: rgb(57, 109, 167);
-}
-.road {
+
+.race-page .roads .road {
+    position: relative;
     width: 350px;
-    height: 90vh; 
+    height: 100vh; 
     background-color: rgb(27, 27, 27);
     border-left: 5px dashed white; 
     border-right: 5px dashed white; 
 }
 
-.nav {
-    display: flex;
-    justify-content: center;
-    padding: 40px;
+.race-page .roads .patty-wagon {
+    position: absolute;
+    bottom: 0px;
+    right: 0px;
 }
 
-.race-bg .nav a {
+.race-page .roads .patty-wagon img {
+    width: 70%;
+}
+.race-page .nav {
+    position: absolute;
+    bottom: 40px;
+    left: 40px;
+}
+
+.race-page .nav a {
     display: flex;
     text-decoration: none;
     justify-content: center;
     align-items: center;
 }
-.race-bg .nav button {
+.race-page .nav a button {
+    font-size: 2rem;
     width: fit-content;
     margin: 0;
 }
