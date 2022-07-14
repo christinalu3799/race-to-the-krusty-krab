@@ -118,6 +118,7 @@ button:active {
 }
 .race-page .roads .patty-wagon-1,
 .race-page .roads .patty-wagon-2 {
+    position: absolute;
     display: flex;
     justify-content: center;
     align-items: center;

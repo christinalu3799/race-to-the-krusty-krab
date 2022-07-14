@@ -1,7 +1,7 @@
 let pattyWagon1 = document.querySelector('.patty-wagon-1');
 let pattyWagon2 = document.querySelector('.patty-wagon-2');
-let moveBy = 60;
-let player = {};
+
+let player = {speed:10};
 let keys = {
     ArrowUp: false,
     ArrowDown: false,
@@ -14,7 +14,23 @@ document.addEventListener("keyup", pressOff);
 
 function playGame() {
     console.log('inplay');
+    
     if(player.start){
+        if(keys.ArrowUp) {
+            player.y -= player.speed
+        }
+        if(keys.ArrowDown) {
+            player.y += player.speed
+        }
+        if(keys.ArrowLeft) {
+            player.x -= player.speed
+        }
+        if(keys.ArrowRight) {
+            player.x += player.speed
+        }
+        pattyWagon2.style.left = player.x + 'px';
+        pattyWagon2.style.top = player.y + 'px';
+
         window.requestAnimationFrame(playGame);
     }
     
@@ -30,10 +46,12 @@ function pressOff(e) {
     console.log(keys);
 }
 function start() {
-    console.log('your game has started');
+    
     player.start = true;
     window.requestAnimationFrame(playGame);
-
+    player.x = pattyWagon2.offsetLeft;
+    player.y = pattyWagon2.offsetTop;
+    console.log(player);
 }
 
 // window.addEventListener('load', () => {
