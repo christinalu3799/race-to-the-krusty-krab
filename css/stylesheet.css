@@ -120,7 +120,8 @@ button:active {
     border-right: 5px dashed white; 
 }
 
-.race-page .roads .patty-wagon img {
+.race-page .roads .patty-wagon-1 img,
+.race-page .roads .patty-wagon-2 img {
     width: 70%;
 }
 .race-page .nav {
