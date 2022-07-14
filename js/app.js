@@ -3,6 +3,12 @@ let pattyWagon2 = document.querySelector('.patty-wagon-2');
 
 let player = {speed:10};
 let keys = {
+    // PLAYER 1 CONTROLS
+    w: false, 
+    s: false, 
+    d: false, 
+    a: false,
+    // PLAYER 2 CONTROLS
     ArrowUp: false,
     ArrowDown: false,
     ArrowRight: false, 
@@ -16,24 +22,40 @@ function playGame() {
     console.log('inplay');
     
     if(player.start){
+        // PLAYER 1 CONTROLS
+        if(keys.w) {
+            player.y1 -= player.speed
+        }
+        if(keys.s) {
+            player.y1 += player.speed
+        }
+        if(keys.a) {
+            player.x1 -= player.speed
+        }
+        if(keys.d) {
+            player.x1 += player.speed
+        }
+        // PLAYER 2 CONTROLS
         if(keys.ArrowUp) {
-            player.y -= player.speed
+            player.y2 -= player.speed
         }
         if(keys.ArrowDown) {
-            player.y += player.speed
+            player.y2 += player.speed
         }
         if(keys.ArrowLeft) {
-            player.x -= player.speed
+            player.x2 -= player.speed
         }
         if(keys.ArrowRight) {
-            player.x += player.speed
+            player.x2 += player.speed
         }
-        pattyWagon2.style.left = player.x + 'px';
-        pattyWagon2.style.top = player.y + 'px';
+
+        pattyWagon1.style.left = player.x1 + 'px';
+        pattyWagon1.style.top = player.y1 + 'px';
+        pattyWagon2.style.left = player.x2 + 'px';
+        pattyWagon2.style.top = player.y2 + 'px';
 
         window.requestAnimationFrame(playGame);
     }
-    
 }
 function pressOn(e) { 
     e.preventDefault();
@@ -46,11 +68,12 @@ function pressOff(e) {
     console.log(keys);
 }
 function start() {
-    
     player.start = true;
     window.requestAnimationFrame(playGame);
-    player.x = pattyWagon2.offsetLeft;
-    player.y = pattyWagon2.offsetTop;
+    player.x1 = pattyWagon1.offsetLeft;
+    player.y1 = pattyWagon1.offsetTop;
+    player.x2 = pattyWagon2.offsetLeft;
+    player.y2 = pattyWagon2.offsetTop;
     console.log(player);
 }
 
