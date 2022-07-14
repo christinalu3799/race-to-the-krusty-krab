@@ -1,7 +1,6 @@
 * {
     margin: 0;
 }
-
 @font-face {
     font-family: 'Krabby Patty';
     src: url(Krabby-Patty.ttf);
@@ -64,13 +63,11 @@ button {
     filter: drop-shadow(-4px 4px black);
 }
 button:hover {
-    transform: translateX(3px) translateY(-3px);
-    
+    transform: translateX(3px) translateY(-3px); 
 }
 button:active {
     transform: translateX(-4px) translateY(4px);
 }
-
 /* INSTRUCTIONS PAGE ================================================*/
 .instructions-page {
     background-color: rgb(5, 5, 124);
@@ -113,17 +110,25 @@ button:active {
 
 .race-page .roads .road {
     position: relative;
-    width: 350px;
+    width: 450px;
     height: 100vh; 
     background-color: rgb(27, 27, 27);
     border-left: 5px dashed white; 
     border-right: 5px dashed white; 
 }
-
-.race-page .roads .patty-wagon-1 img,
-.race-page .roads .patty-wagon-2 img {
-    width: 70%;
+.race-page .roads .patty-wagon-1,
+.race-page .roads .patty-wagon-2 {
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
+.race-page .roads .patty-wagon-1 img {
+    width: 8rem;
+}
+.race-page .roads .patty-wagon-2 img {
+    width: 8rem;
+}
+/* RACE PAGE NAV =====================================================*/
 .race-page .nav {
     position: absolute;
     bottom: 40px;
@@ -141,5 +146,3 @@ button:active {
     width: fit-content;
     margin: 0;
 }
-
-
