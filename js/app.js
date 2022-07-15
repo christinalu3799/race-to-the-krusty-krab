@@ -3,9 +3,8 @@ let pattyWagon1 = document.querySelector('.patty-wagon-1');
 let pattyWagon2 = document.querySelector('.patty-wagon-2');
 
 // Assign P1 and P2 roads to a variable 
-// let road1 = document.querySelector('.road1');
-// let road2 = document.querySelector('.road2');
-let roads = document.querySelector('.roads');
+let P1GameArea = document.querySelector('.road1');
+let P2GameArea = document.querySelector('.road2');
 
 // Create a player object to define the speed of the cars
 let player = {speed:5};
@@ -33,7 +32,7 @@ document.addEventListener("keyup", pressOff);
 function playGame() {
 
     // Bound each patty wagon within the road area 
-    let road2 = roads.getBoundingClientRect();
+    let road1 = P1GameArea.getBoundingClientRect();
     
     // This block will only execute when player.start === true 
     // Should be assigned to true as soon as the page loads
@@ -46,10 +45,10 @@ function playGame() {
         if(keys.s) {
             player.y1 += player.speed
         }
-        if(keys.a && player.x1 >0) {
+        if(keys.a && player.x1 > 0) {
             player.x1 -= player.speed
         }
-        if(keys.d) {
+        if(keys.d && player.x1 < (road1.width-155)) {
             player.x1 += player.speed
         }
     
@@ -64,7 +63,7 @@ function playGame() {
         if(keys.ArrowLeft && player.x2 >0) {
             player.x2 -= player.speed
         }
-        if(keys.ArrowRight) {
+        if(keys.ArrowRight && player.x2< road1.width-155) {
             player.x2 += player.speed
         }
 
