@@ -2,8 +2,13 @@
 let pattyWagon1 = document.querySelector('.patty-wagon-1');
 let pattyWagon2 = document.querySelector('.patty-wagon-2');
 
+// Assign P1 and P2 roads to a variable 
+// let road1 = document.querySelector('.road1');
+// let road2 = document.querySelector('.road2');
+let roads = document.querySelector('.roads');
+
 // Create a player object to define the speed of the cars
-let player = {speed:10};
+let player = {speed:5};
 
 // Create a keys object to keep track of the keys the players will use to move the cars
 let keys = {
@@ -26,24 +31,29 @@ document.addEventListener("keyup", pressOff);
 // This function allows the cars to move according to the keypress
 // When the player holds the key, the car will continue to move
 function playGame() {
-    console.log('inplay');
+
+    // Bound each patty wagon within the road area 
+    let road2 = roads.getBoundingClientRect();
     
     // This block will only execute when player.start === true 
     // Should be assigned to true as soon as the page loads
     if(player.start){
         // PLAYER 1 CONTROLS
+       
         if(keys.w) {
-            player.y1 -= player.speed
+        player.y1 -= player.speed
         }
         if(keys.s) {
             player.y1 += player.speed
         }
-        if(keys.a) {
+        if(keys.a && player.x1 >0) {
             player.x1 -= player.speed
         }
         if(keys.d) {
             player.x1 += player.speed
         }
+    
+        
         // PLAYER 2 CONTROLS
         if(keys.ArrowUp) {
             player.y2 -= player.speed
@@ -51,7 +61,7 @@ function playGame() {
         if(keys.ArrowDown) {
             player.y2 += player.speed
         }
-        if(keys.ArrowLeft) {
+        if(keys.ArrowLeft && player.x2 >0) {
             player.x2 -= player.speed
         }
         if(keys.ArrowRight) {
@@ -63,7 +73,7 @@ function playGame() {
         pattyWagon2.style.left = player.x2 + 'px';
         pattyWagon2.style.top = player.y2 + 'px';
 
-        // Calling the playGame function again to keep the cars moving
+        // Recursively calling the playGame function again to keep the cars moving
         window.requestAnimationFrame(playGame);
     }
 }
@@ -83,6 +93,7 @@ function pressOff(e) {
 // This function loads as soon as the player gets onto the game page
 function start() {
     player.start = true;
+
     window.requestAnimationFrame(playGame);
     player.x1 = pattyWagon1.offsetLeft;
     player.y1 = pattyWagon1.offsetTop;
