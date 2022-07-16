@@ -96,6 +96,16 @@ function pressOff(e) {
 function start() {
     window.requestAnimationFrame(playGame);
     player.start = true;
+
+    // Generate the road lines 
+    for(let x=0; x<8;x++) {
+        // Creating the lines for the left and middle lanes
+        let roadLine1Div = document.createElement('div');
+        roadLine1Div.classList.add('line1');
+        roadLine1Div.style.top = (x*110) + 'px';
+        P1GameArea.appendChild(roadLine1Div);
+        // Creating the lines for the middle and right lanes
+    }
     player.x1 = pattyWagon1.offsetLeft;
     player.y1 = pattyWagon1.offsetTop;
     player.x2 = pattyWagon2.offsetLeft;
