@@ -182,12 +182,26 @@ function start() {
 
     // Generate random boat-mobiles 
     let lanePositions = [25, 185, 340]
-    for(let x = 0; x < 8; x++) {
-        let boatMobile = document.createElement('div');
-        boatMobile.classList.add('boat-mobile');
-        boatMobile.y = ((x+1)*road1.height*(-1));
-        boatMobile.style.top = boatMobile.y + 'px';
-        boatMobile.style.left =lanePositions[Math.floor(Math.random()*3)] +'px';
-        P1GameArea.appendChild(boatMobile);
+    let numBoatMobiles = 10;
+    for(let x = 0; x < numBoatMobiles; x++) {
+        // Creating Boatmobiles for Player 1
+
+        // Creating new element for boat mobiles
+        let boatMobile1 = document.createElement('div');
+        boatMobile1.classList.add('boat-mobile');
+
+        // Assigning y-position to boat mobile to span the entire height of the road
+        boatMobile1.y = ((x+1)*road1.height*(-1));
+        boatMobile1.style.top = boatMobile1.y + 'px';
+        boatMobile1.style.left =lanePositions[Math.floor(Math.random()*3)] +'px';
+        P1GameArea.appendChild(boatMobile1);
+
+        // Creating Boatmobiles for Player 2
+        let boatMobile2 = document.createElement('div');
+        boatMobile2.classList.add('boat-mobile');
+        boatMobile2.y = ((x+1)*road2.height*(-1));
+        boatMobile2.style.top = boatMobile2.y + 'px';
+        boatMobile2.style.left =lanePositions[Math.floor(Math.random()*3)] +'px';
+        P2GameArea.appendChild(boatMobile2);
     }
 }
