@@ -7,7 +7,7 @@ let P1GameArea = document.querySelector('.road1');
 let P2GameArea = document.querySelector('.road2');
 
 // Create a player object to define the speed of the cars
-let player = {speed:1};
+let player = {speed:3};
 
 // Create a keys object to keep track of the keys the players will use to move the cars
 let keys = {
@@ -35,15 +35,24 @@ let road2 = P2GameArea.getBoundingClientRect();
 // Move road lines function 
 function animateRoadLines() { 
     let lines1 = document.querySelectorAll('.line1');
+    let lines2 = document.querySelectorAll('.line2');
     lines1.forEach(function(line) { 
-        
+
         if(line.y > road1.height) {
             line.y -= road1.height;
         }
         line.y += player.speed;
         line.style.top = line.y + 'px';
     })
-    let lines2 = document.querySelectorAll('.line2');
+    lines2.forEach(function(line) { 
+
+        if(line.y > road1.height) {
+            line.y -= road1.height;
+        }
+        line.y += player.speed;
+        line.style.top = line.y + 'px';
+    })
+    
 }
 // This function allows the cars to move according to the keypress
 
@@ -108,6 +117,7 @@ function pressOff(e) {
 }
 
 // This function loads as soon as the player gets onto the game page
+// the start() function calls the playGame function
 function start() {
     window.requestAnimationFrame(playGame);
     player.start = true;
@@ -116,28 +126,37 @@ function start() {
     let numLines = 8;
     for(let x=0; x < numLines;x++) {
         // Creating the lines for the left and middle lanes
+
         // PLAYER 1 ----------------------------------------------
         let road1Line1Div = document.createElement('div');
         road1Line1Div.classList.add('line1');
+        // Set y-pos of lines to use in animateRoadLines function
         road1Line1Div.y = x * (road1.height/numLines);
         road1Line1Div.style.top = (x*(road1.height/numLines)) + 'px';
         P1GameArea.appendChild(road1Line1Div);
+
         // PLAYER 2 ----------------------------------------------
         let road2Line1Div = document.createElement('div');
         road2Line1Div.classList.add('line1');
-        road2Line1Div.style.top = (x*110) + 'px';
+        road2Line1Div.y = x * (road1.height/numLines);
+        road2Line1Div.style.top = (x*(road1.height/numLines)) + 'px';
         P2GameArea.appendChild(road2Line1Div);
 
+
         // Creating the lines for the middle and right lanes
+
         // PLAYER 1 ----------------------------------------------
         let road1Line2Div = document.createElement('div');
         road1Line2Div.classList.add('line2');
-        road1Line2Div.style.top = (x*110) + 'px';
+        road1Line2Div.y = x * (road2.height/numLines);
+        road1Line2Div.style.top = (x*(road2.height/numLines)) + 'px';
         P1GameArea.appendChild(road1Line2Div);
+
         // PLAYER 2 ----------------------------------------------
         let road2Line2Div = document.createElement('div');
         road2Line2Div.classList.add('line2');
-        road2Line2Div.style.top = (x*110) + 'px';
+        road2Line2Div.y = x * (road2.height/numLines);
+        road2Line2Div.style.top = (x*(road2.height/numLines)) + 'px';
         P2GameArea.appendChild(road2Line2Div);
     }
     player.x1 = pattyWagon1.offsetLeft;
