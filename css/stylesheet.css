@@ -122,15 +122,24 @@ button:active {
     bottom: 100px;
     height: auto;
     width: auto;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+    z-index: 1;
 }
 .race-page .roads .patty-wagon-1 img,
 .race-page .roads .patty-wagon-2 img {
     width: 125px;
 }
-
+.boat-mobile {
+    position: absolute;
+    background-image: url(/images/boatmobile.png);
+    /* Size of boatmobile */
+    background-size: 75%;
+    background-repeat: no-repeat;
+    bottom: 100px;
+    margin: auto;
+    z-index: 1;
+    width: 100px;
+    height: 300px;
+}
 /* ROAD LINES ========================================================*/
 .line1 {
     position: absolute; 
@@ -138,6 +147,7 @@ button:active {
     width: 5px;
     margin-left: 150px; 
     background-color: yellow;
+    
 }
 .line2 {
     position: absolute; 

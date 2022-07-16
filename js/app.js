@@ -29,9 +29,10 @@ document.addEventListener("keyup", pressOff);
 
 // Bound each patty wagon within the road area 
 let road1 = P1GameArea.getBoundingClientRect();
-console.log(road1);
 let road2 = P2GameArea.getBoundingClientRect();
 
+console.log('Road 1 properties:', road1);
+console.log('Road 2 properties:', road2);
 // Move road lines function 
 function animateRoadLines() { 
     let lines1 = document.querySelectorAll('.line1');
@@ -52,13 +53,27 @@ function animateRoadLines() {
         line.y += player.speed;
         line.style.top = line.y + 'px';
     })
-    
 }
-// This function allows the cars to move according to the keypress
 
+// Generate and move boatmobiles 
+function moveBoatMobiles() {
+    let boat = document.querySelectorAll('.boat-mobile');
+    boat.forEach(function (b) {
+        if(b.y > road1.height + b.height) {
+            b.y -= road1.height;
+            b.style.left = Math.floor(Math.random()*road1.width) +'px';
+
+        }
+        b.y += player.speed;
+        b.style.top = b.y + 'px';
+    })
+}
+
+// This function allows the cars to move according to the keypress
 function playGame() {
     
     animateRoadLines();
+    moveBoatMobiles();
     // This block will only execute when player.start === true 
     // Should be assigned to true as soon as the page loads
     if(player.start){
@@ -159,8 +174,20 @@ function start() {
         road2Line2Div.style.top = (x*(road2.height/numLines)) + 'px';
         P2GameArea.appendChild(road2Line2Div);
     }
+
     player.x1 = pattyWagon1.offsetLeft;
     player.y1 = pattyWagon1.offsetTop;
     player.x2 = pattyWagon2.offsetLeft;
     player.y2 = pattyWagon2.offsetTop;
+
+    // Generate random boat-mobiles 
+    let lanePositions = [25, 185, 340]
+    for(let x = 0; x < 8; x++) {
+        let boatMobile = document.createElement('div');
+        boatMobile.classList.add('boat-mobile');
+        boatMobile.y = ((x+1)*road1.height*(-1));
+        boatMobile.style.top = boatMobile.y + 'px';
+        boatMobile.style.left =lanePositions[Math.floor(Math.random()*3)] +'px';
+        P1GameArea.appendChild(boatMobile);
+    }
 }
