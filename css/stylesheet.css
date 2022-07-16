@@ -98,6 +98,7 @@ button:active {
     width: 100%;
     justify-content: center;
     align-items: center;
+    overflow: hidden;
 }
 
 .player1,
@@ -116,29 +117,30 @@ button:active {
     border-left: 5px dashed white; 
     border-right: 5px dashed white; 
 }
-.race-page .roads .patty-wagon-1,
-.race-page .roads .patty-wagon-2 {
+.pattyWagon1,
+.pattyWagon2 {
+    /* background-color: blue; */
+    background-image: url(/images/patty-wagon.png);
+    background-size: cover;
     position: absolute;
     bottom: 100px;
-    height: auto;
-    width: auto;
+    height: 100px;
+    width: 110px;
     z-index: 1;
 }
-.race-page .roads .patty-wagon-1 img,
-.race-page .roads .patty-wagon-2 img {
-    width: 125px;
-}
+
 .boat-mobile {
     position: absolute;
     background-image: url(/images/boatmobile.png);
+    /* background-color: white; */
     /* Size of boatmobile */
-    background-size: 75%;
+    background-size: 100%;
     background-repeat: no-repeat;
     bottom: 100px;
     margin: auto;
     z-index: 1;
-    width: 100px;
-    height: 300px;
+    width: 80px;
+    height: 210px;
 }
 /* ROAD LINES ========================================================*/
 .line1 {

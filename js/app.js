@@ -1,7 +1,3 @@
-// Assign patty wagons to variables
-let pattyWagon1 = document.querySelector('.patty-wagon-1');
-let pattyWagon2 = document.querySelector('.patty-wagon-2');
-
 // Assign P1 and P2 roads to a variable 
 let P1GameArea = document.querySelector('.road1');
 let P2GameArea = document.querySelector('.road2');
@@ -33,6 +29,8 @@ let road2 = P2GameArea.getBoundingClientRect();
 
 console.log('Road 1 properties:', road1);
 console.log('Road 2 properties:', road2);
+
+
 // Move road lines function 
 function animateRoadLines() { 
     let lines1 = document.querySelectorAll('.line1');
@@ -55,15 +53,40 @@ function animateRoadLines() {
     })
 }
 
+// Function to detect if player has collided with other boat mobiles 
+function crash(pattywagon, boatmobile) {
+    
+let pattywagonRect = pattywagon.getBoundingClientRect();
+let boatmobileRect = boatmobile.getBoundingClientRect();
+// console.log('A',pattywagonRect,'B',boatmobileRect);
+
+    return !(
+        // Check top and bottom
+        (pattywagonRect.bottom < boatmobileRect.top) || 
+        (pattywagonRect.top > boatmobileRect.bottom) ||
+        // Check left and right
+        (pattywagonRect.right < boatmobileRect.left) ||
+        (pattywagonRect.left > boatmobileRect.right)
+    )
+
+}
+
 // Generate and move boatmobiles 
-function moveBoatMobiles() {
+function moveBoatMobiles(pattyWagon1, pattyWagon2) {
     let boat = document.querySelectorAll('.boat-mobile');
     boat.forEach(function (b) {
+        if(crash(pattyWagon1, b)) {
+            console.log("HIT 1");
+        };
+        if(crash(pattyWagon2, b)) {
+            console.log("HIT 2");
+        };
+       
         if(b.y > road1.height + b.height) {
             b.y -= road1.height;
             b.style.left = Math.floor(Math.random()*road1.width) +'px';
 
-        }
+        };
         b.y += player.speed;
         b.style.top = b.y + 'px';
     })
@@ -71,9 +94,13 @@ function moveBoatMobiles() {
 
 // This function allows the cars to move according to the keypress
 function playGame() {
-    
+
+    let pattyWagon1 = document.querySelector('.pattyWagon1');
+    let pattyWagon2 = document.querySelector('.pattyWagon2');
+
     animateRoadLines();
-    moveBoatMobiles();
+
+    moveBoatMobiles(pattyWagon1, pattyWagon2);
     // This block will only execute when player.start === true 
     // Should be assigned to true as soon as the page loads
     if(player.start){
@@ -174,6 +201,14 @@ function start() {
         road2Line2Div.style.top = (x*(road2.height/numLines)) + 'px';
         P2GameArea.appendChild(road2Line2Div);
     }
+
+    // Create players' cars (patty wagons)
+    let pattyWagon1 = document.createElement('div');
+    pattyWagon1.setAttribute('class','pattyWagon1');
+    let pattyWagon2 = document.createElement('div');
+    pattyWagon2.setAttribute('class','pattyWagon2');
+    P1GameArea.appendChild(pattyWagon1);
+    P2GameArea.appendChild(pattyWagon2);
 
     player.x1 = pattyWagon1.offsetLeft;
     player.y1 = pattyWagon1.offsetTop;
