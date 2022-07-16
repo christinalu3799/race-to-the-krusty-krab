@@ -29,41 +29,46 @@ document.addEventListener("keyup", pressOff);
 
 // This function allows the cars to move according to the keypress
 // When the player holds the key, the car will continue to move
+// Bound each patty wagon within the road area 
+let road1 = P1GameArea.getBoundingClientRect();
+let road2 = P2GameArea.getBoundingClientRect();
+console.log(road1)
 function playGame() {
-
-    // Bound each patty wagon within the road area 
-    let road1 = P1GameArea.getBoundingClientRect();
-    
+      
     // This block will only execute when player.start === true 
     // Should be assigned to true as soon as the page loads
     if(player.start){
+
         // PLAYER 1 CONTROLS
-       
-        if(keys.w) {
-        player.y1 -= player.speed
+        // Stop patty wagon at the top of the road
+        // Need to adjust pixels to prevent patty wagon from getting cut off
+        if(keys.w && player.y1 > (road1.top - road1.height + 250)) {
+            player.y1 -= player.speed
         }
-        if(keys.s) {
+        if(keys.s && player.y1 < (road1.bottom - 75)) {
             player.y1 += player.speed
         }
+        // x-position must be greater than 0 from the left
         if(keys.a && player.x1 > 0) {
             player.x1 -= player.speed
         }
-        if(keys.d && player.x1 < (road1.width-155)) {
+        // Stay within the width of the road
+        // Subtract 155px to prevent half of patty wagon from getting cut off
+        if(keys.d && player.x1 < (road1.width - 155)) {
             player.x1 += player.speed
         }
     
-        
         // PLAYER 2 CONTROLS
-        if(keys.ArrowUp) {
+        if(keys.ArrowUp && player.y2 > (road2.top - road2.height + 250)) {
             player.y2 -= player.speed
         }
-        if(keys.ArrowDown) {
+        if(keys.ArrowDown && player.y2 < (road2.bottom - 75)) {
             player.y2 += player.speed
         }
-        if(keys.ArrowLeft && player.x2 >0) {
+        if(keys.ArrowLeft && player.x2 > 0) {
             player.x2 -= player.speed
         }
-        if(keys.ArrowRight && player.x2< road1.width-155) {
+        if(keys.ArrowRight && player.x2 < road2.width - 155) {
             player.x2 += player.speed
         }
 
@@ -81,22 +86,18 @@ function playGame() {
 function pressOn(e) { 
     e.preventDefault();
     keys[e.key] = true;
-    console.log(keys);
 }
 function pressOff(e) { 
     e.preventDefault();
     keys[e.key] = false;
-    console.log(keys);
 }
 
 // This function loads as soon as the player gets onto the game page
 function start() {
-    player.start = true;
-
     window.requestAnimationFrame(playGame);
+    player.start = true;
     player.x1 = pattyWagon1.offsetLeft;
     player.y1 = pattyWagon1.offsetTop;
     player.x2 = pattyWagon2.offsetLeft;
     player.y2 = pattyWagon2.offsetTop;
-    console.log(player);
 }
