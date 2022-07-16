@@ -3,7 +3,9 @@ let P1GameArea = document.querySelector('.road1');
 let P2GameArea = document.querySelector('.road2');
 
 // Create a player object to define the speed of the cars
-let player = {speed:2};
+let player = {
+    speed:2,
+};
 
 // Create a keys object to keep track of the keys the players will use to move the cars
 let keys = {
@@ -60,28 +62,40 @@ let boatmobileRect = boatmobile.getBoundingClientRect();
 let player1 = document.querySelector('.player1');
 let player2 = document.querySelector('.player2');
 
-function P1lost() {
-    let P1lost = document.createElement('div');
-    P1lost.setAttribute('class', 'p1-lost-msg');
-    player1.appendChild(P1lost); 
-}
 // Bound each patty wagon within the road area 
 let road1 = P1GameArea.getBoundingClientRect();
 let road2 = P2GameArea.getBoundingClientRect();
 
-// Make tracker to keep track of who has lost 
-let P1stillInGame = true;
-let P2stillInGame = true;
+// Make tracker to keep track of who is still in the game
+let stillInGame = { 
+    P1: true,
+    P2: true
+};
+
+// Functions to display 'GAME OVER' message
+function lost() {  
+    if(!stillInGame.P1) { 
+        let lost = document.createElement('div');
+        lost.setAttribute('class', 'lost-msg');
+        player1.appendChild(lost); 
+    }
+    if(!stillInGame.P2) {
+        let lost = document.createElement('div');
+        lost.setAttribute('class', 'lost-msg');
+        player2.appendChild(lost); 
+    }  
+}
 // Generate and move boatmobiles 
 function moveBoatMobiles(pattyWagon1, pattyWagon2) {
     let boat = document.querySelectorAll('.boat-mobile');
     boat.forEach(function (b) {
-        if(crash(pattyWagon1, b) && P1stillInGame) {
-            P1lost();
-            P1stillInGame = false;
+        if(crash(pattyWagon1, b) && stillInGame.P1) {
+            stillInGame.P1 = false;
+            lost();
         };
-        if(crash(pattyWagon2, b)) {
-            console.log("HIT 2");
+        if(crash(pattyWagon2, b) && stillInGame.P2) {
+            stillInGame.P2 = false;
+            lost();
         };
        
         if(b.y > road1.height + b.height) {

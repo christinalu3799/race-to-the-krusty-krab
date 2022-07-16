@@ -126,7 +126,7 @@ button:active {
     bottom: 100px;
     height: 100px;
     width: 110px;
-    z-index: 1;
+    z-index: 2;
 }
 
 .boat-mobile {
@@ -176,10 +176,13 @@ button:active {
     margin: 0;
 }
 /* LOST MESSAGES =====================================================*/
-.p1-lost-msg {
+.lost-msg {
     position: absolute;
     height: 300px; 
     width: 400px; 
     background-color: rgb(225, 203, 5);
-    z-index: 2;
+    background-image: url(/images/gameover.png);
+    background-size: contain;
+    border-radius: 5px;
+    z-index: 5;
 }
