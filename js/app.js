@@ -48,13 +48,13 @@ function playGame() {
         if(keys.s && player.y1 < (road1.bottom - 75)) {
             player.y1 += player.speed
         }
-        // x-position must be greater than 0 from the left
+        // x-position must be greater than 0px from the left side of road
         if(keys.a && player.x1 > 0) {
             player.x1 -= player.speed
         }
         // Stay within the width of the road
         // Subtract 155px to prevent half of patty wagon from getting cut off
-        if(keys.d && player.x1 < (road1.width - 155)) {
+        if(keys.d && player.x1 < (road1.width - 135)) {
             player.x1 += player.speed
         }
     
@@ -68,7 +68,7 @@ function playGame() {
         if(keys.ArrowLeft && player.x2 > 0) {
             player.x2 -= player.speed
         }
-        if(keys.ArrowRight && player.x2 < road2.width - 155) {
+        if(keys.ArrowRight && player.x2 < road2.width - 135) {
             player.x2 += player.speed
         }
 
@@ -100,11 +100,28 @@ function start() {
     // Generate the road lines 
     for(let x=0; x<8;x++) {
         // Creating the lines for the left and middle lanes
-        let roadLine1Div = document.createElement('div');
-        roadLine1Div.classList.add('line1');
-        roadLine1Div.style.top = (x*110) + 'px';
-        P1GameArea.appendChild(roadLine1Div);
+        // PLAYER 1 ----------------------------------------------
+        let road1Line1Div = document.createElement('div');
+        road1Line1Div.classList.add('line1');
+        road1Line1Div.style.top = (x*110) + 'px';
+        P1GameArea.appendChild(road1Line1Div);
+        // PLAYER 2 ----------------------------------------------
+        let road2Line1Div = document.createElement('div');
+        road2Line1Div.classList.add('line1');
+        road2Line1Div.style.top = (x*110) + 'px';
+        P2GameArea.appendChild(road2Line1Div);
+
         // Creating the lines for the middle and right lanes
+        // PLAYER 1 ----------------------------------------------
+        let road1Line2Div = document.createElement('div');
+        road1Line2Div.classList.add('line2');
+        road1Line2Div.style.top = (x*110) + 'px';
+        P1GameArea.appendChild(road1Line2Div);
+        // PLAYER 2 ----------------------------------------------
+        let road2Line2Div = document.createElement('div');
+        road2Line2Div.classList.add('line2');
+        road2Line2Div.style.top = (x*110) + 'px';
+        P2GameArea.appendChild(road2Line2Div);
     }
     player.x1 = pattyWagon1.offsetLeft;
     player.y1 = pattyWagon1.offsetTop;

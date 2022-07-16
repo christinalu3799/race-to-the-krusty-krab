@@ -126,11 +126,9 @@ button:active {
     justify-content: center;
     align-items: center;
 }
-.race-page .roads .patty-wagon-1 img {
-    width: 150px;
-}
+.race-page .roads .patty-wagon-1 img,
 .race-page .roads .patty-wagon-2 img {
-    width: 150px;
+    width: 125px;
 }
 
 /* ROAD LINES ========================================================*/
@@ -139,6 +137,13 @@ button:active {
     height: 70px; 
     width: 5px;
     margin-left: 150px; 
+    background-color: yellow;
+}
+.line2 {
+    position: absolute; 
+    height: 70px; 
+    width: 5px;
+    margin-left: 300px; 
     background-color: yellow;
 }
 /* RACE PAGE NAV =====================================================*/
