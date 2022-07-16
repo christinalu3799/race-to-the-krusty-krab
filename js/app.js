@@ -3,7 +3,7 @@ let P1GameArea = document.querySelector('.road1');
 let P2GameArea = document.querySelector('.road2');
 
 // Create a player object to define the speed of the cars
-let player = {speed:3};
+let player = {speed:2};
 
 // Create a keys object to keep track of the keys the players will use to move the cars
 let keys = {
@@ -23,20 +23,11 @@ let keys = {
 document.addEventListener("keydown", pressOn);
 document.addEventListener("keyup", pressOff);
 
-// Bound each patty wagon within the road area 
-let road1 = P1GameArea.getBoundingClientRect();
-let road2 = P2GameArea.getBoundingClientRect();
-
-console.log('Road 1 properties:', road1);
-console.log('Road 2 properties:', road2);
-
-
 // Move road lines function 
 function animateRoadLines() { 
     let lines1 = document.querySelectorAll('.line1');
     let lines2 = document.querySelectorAll('.line2');
-    lines1.forEach(function(line) { 
-
+    lines1.forEach(function(line) {
         if(line.y > road1.height) {
             line.y -= road1.height;
         }
@@ -44,7 +35,6 @@ function animateRoadLines() {
         line.style.top = line.y + 'px';
     })
     lines2.forEach(function(line) { 
-
         if(line.y > road1.height) {
             line.y -= road1.height;
         }
@@ -58,8 +48,6 @@ function crash(pattywagon, boatmobile) {
     
 let pattywagonRect = pattywagon.getBoundingClientRect();
 let boatmobileRect = boatmobile.getBoundingClientRect();
-// console.log('A',pattywagonRect,'B',boatmobileRect);
-
     return !(
         // Check top and bottom
         (pattywagonRect.bottom < boatmobileRect.top) || 
@@ -68,15 +56,29 @@ let boatmobileRect = boatmobile.getBoundingClientRect();
         (pattywagonRect.right < boatmobileRect.left) ||
         (pattywagonRect.left > boatmobileRect.right)
     )
-
 }
+let player1 = document.querySelector('.player1');
+let player2 = document.querySelector('.player2');
 
+function P1lost() {
+    let P1lost = document.createElement('div');
+    P1lost.setAttribute('class', 'p1-lost-msg');
+    player1.appendChild(P1lost); 
+}
+// Bound each patty wagon within the road area 
+let road1 = P1GameArea.getBoundingClientRect();
+let road2 = P2GameArea.getBoundingClientRect();
+
+// Make tracker to keep track of who has lost 
+let P1stillInGame = true;
+let P2stillInGame = true;
 // Generate and move boatmobiles 
 function moveBoatMobiles(pattyWagon1, pattyWagon2) {
     let boat = document.querySelectorAll('.boat-mobile');
     boat.forEach(function (b) {
-        if(crash(pattyWagon1, b)) {
-            console.log("HIT 1");
+        if(crash(pattyWagon1, b) && P1stillInGame) {
+            P1lost();
+            P1stillInGame = false;
         };
         if(crash(pattyWagon2, b)) {
             console.log("HIT 2");
@@ -84,10 +86,9 @@ function moveBoatMobiles(pattyWagon1, pattyWagon2) {
        
         if(b.y > road1.height + b.height) {
             b.y -= road1.height;
-            b.style.left = Math.floor(Math.random()*road1.width) +'px';
-
+            // b.style.left = Math.floor(Math.random()*road1.width) +'px';
         };
-        b.y += player.speed;
+        b.y += player.speed; 
         b.style.top = b.y + 'px';
     })
 }
@@ -99,19 +100,19 @@ function playGame() {
     let pattyWagon2 = document.querySelector('.pattyWagon2');
 
     animateRoadLines();
-
     moveBoatMobiles(pattyWagon1, pattyWagon2);
+
     // This block will only execute when player.start === true 
     // Should be assigned to true as soon as the page loads
     if(player.start){
 
-        // PLAYER 1 CONTROLS
+        // PLAYER 1 CONTROLS ----------------------------------------------------------
         // Stop patty wagon at the top of the road
         // Need to adjust pixels to prevent patty wagon from getting cut off
-        if(keys.w && player.y1 > (road1.top - road1.height + 250)) {
+        if(keys.w && player.y1 > (road1.top)) {
             player.y1 -= player.speed
         }
-        if(keys.s && player.y1 < (road1.bottom - 75)) {
+        if(keys.s && player.y1 < (road1.bottom - 100)) {
             player.y1 += player.speed
         }
         // x-position must be greater than 0px from the left side of road
@@ -124,11 +125,11 @@ function playGame() {
             player.x1 += player.speed
         }
     
-        // PLAYER 2 CONTROLS
-        if(keys.ArrowUp && player.y2 > (road2.top - road2.height + 250)) {
+        // PLAYER 2 CONTROLS ----------------------------------------------------------
+        if(keys.ArrowUp && player.y2 > (road2.top)) {
             player.y2 -= player.speed
         }
-        if(keys.ArrowDown && player.y2 < (road2.bottom - 75)) {
+        if(keys.ArrowDown && player.y2 < (road2.bottom - 100)) {
             player.y2 += player.speed
         }
         if(keys.ArrowLeft && player.x2 > 0) {
@@ -216,8 +217,8 @@ function start() {
     player.y2 = pattyWagon2.offsetTop;
 
     // Generate random boat-mobiles 
-    let lanePositions = [25, 185, 340]
-    let numBoatMobiles = 10;
+    let lanePositions = [55, 195, 350]
+    let numBoatMobiles = 20;
     for(let x = 0; x < numBoatMobiles; x++) {
         // Creating Boatmobiles for Player 1
 

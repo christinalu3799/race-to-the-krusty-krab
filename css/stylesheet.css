@@ -104,9 +104,9 @@ button:active {
 .player1,
 .player2 {
     display: flex;
-    width: 50%;
     justify-content: center;
     align-items: center;
+    width: 50%;
 }
 
 .race-page .roads .road {
@@ -139,8 +139,8 @@ button:active {
     bottom: 100px;
     margin: auto;
     z-index: 1;
-    width: 80px;
-    height: 210px;
+    width: 60px;
+    height: 160px;
 }
 /* ROAD LINES ========================================================*/
 .line1 {
@@ -148,15 +148,14 @@ button:active {
     height: 65px; 
     width: 5px;
     margin-left: 150px; 
-    background-color: yellow;
-    
+    background-color: rgb(225, 203, 5);
 }
 .line2 {
     position: absolute; 
     height: 70px; 
     width: 5px;
     margin-left: 300px; 
-    background-color: yellow;
+    background-color: rgb(225, 203, 5);
 }
 /* RACE PAGE NAV =====================================================*/
 .race-page .nav {
@@ -175,4 +174,12 @@ button:active {
     font-size: 2rem;
     width: fit-content;
     margin: 0;
+}
+/* LOST MESSAGES =====================================================*/
+.p1-lost-msg {
+    position: absolute;
+    height: 300px; 
+    width: 400px; 
+    background-color: rgb(225, 203, 5);
+    z-index: 2;
 }
