@@ -134,7 +134,7 @@ button:active {
 /* ROAD LINES ========================================================*/
 .line1 {
     position: absolute; 
-    height: 70px; 
+    height: 65px; 
     width: 5px;
     margin-left: 150px; 
     background-color: yellow;

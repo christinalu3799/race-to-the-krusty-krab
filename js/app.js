@@ -7,7 +7,7 @@ let P1GameArea = document.querySelector('.road1');
 let P2GameArea = document.querySelector('.road2');
 
 // Create a player object to define the speed of the cars
-let player = {speed:5};
+let player = {speed:1};
 
 // Create a keys object to keep track of the keys the players will use to move the cars
 let keys = {
@@ -27,14 +27,29 @@ let keys = {
 document.addEventListener("keydown", pressOn);
 document.addEventListener("keyup", pressOff);
 
-// This function allows the cars to move according to the keypress
-// When the player holds the key, the car will continue to move
 // Bound each patty wagon within the road area 
 let road1 = P1GameArea.getBoundingClientRect();
+console.log(road1);
 let road2 = P2GameArea.getBoundingClientRect();
-console.log(road1)
+
+// Move road lines function 
+function animateRoadLines() { 
+    let lines1 = document.querySelectorAll('.line1');
+    lines1.forEach(function(line) { 
+        
+        if(line.y > road1.height) {
+            line.y -= road1.height;
+        }
+        line.y += player.speed;
+        line.style.top = line.y + 'px';
+    })
+    let lines2 = document.querySelectorAll('.line2');
+}
+// This function allows the cars to move according to the keypress
+
 function playGame() {
-      
+    
+    animateRoadLines();
     // This block will only execute when player.start === true 
     // Should be assigned to true as soon as the page loads
     if(player.start){
@@ -97,13 +112,15 @@ function start() {
     window.requestAnimationFrame(playGame);
     player.start = true;
 
-    // Generate the road lines 
-    for(let x=0; x<8;x++) {
+    // Generate the road lines. Iterating 8 times for 8 lines
+    let numLines = 8;
+    for(let x=0; x < numLines;x++) {
         // Creating the lines for the left and middle lanes
         // PLAYER 1 ----------------------------------------------
         let road1Line1Div = document.createElement('div');
         road1Line1Div.classList.add('line1');
-        road1Line1Div.style.top = (x*110) + 'px';
+        road1Line1Div.y = x * (road1.height/numLines);
+        road1Line1Div.style.top = (x*(road1.height/numLines)) + 'px';
         P1GameArea.appendChild(road1Line1Div);
         // PLAYER 2 ----------------------------------------------
         let road2Line1Div = document.createElement('div');
