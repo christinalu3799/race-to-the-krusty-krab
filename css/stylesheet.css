@@ -89,7 +89,7 @@ button:active {
 }
 /* RACE PAGE ========================================================*/
 .race-page {
-    background-image: url("../images/sand-bg.jpeg");
+    background-image: url(../images/sand-bg.jpeg);
     background-size: cover;
     background-repeat: no-repeat;
 }
@@ -120,7 +120,7 @@ button:active {
 .pattyWagon1,
 .pattyWagon2 {
     /* background-color: blue; */
-    background-image: url("../images/patty-wagon.png");
+    background-image: url(../images/patty-wagon.png);
     background-size: cover;
     position: absolute;
     bottom: 100px;
@@ -131,7 +131,7 @@ button:active {
 
 .boat-mobile {
     position: absolute;
-    background-image: url("../images/boatmobile.png");
+    background-image: url(../images/boatmobile.png);
     /* background-color: white; */
     /* Size of boatmobile */
     background-size: 100%;
@@ -181,7 +181,7 @@ button:active {
     height: 300px; 
     width: 400px; 
     background-color: rgb(225, 203, 5);
-    background-image: url("../images/gameover.png");
+    background-image: url(../images/gameover.png);
     background-size: contain;
     border-radius: 5px;
     z-index: 5;
