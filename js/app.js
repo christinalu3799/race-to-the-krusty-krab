@@ -104,7 +104,7 @@ function moveBoatMobiles(pattyWagon1, pattyWagon2) {
         if(stillInGame.P1 === false && stillInGame.P2 === false) {
             // Stop animation frame 
             cancelAnimationFrame(myReq);
-            window.location.href = '../game-over.html';
+            window.location.href = './game-over.html';
             
         }
         if(b.y > road1.height + b.height) {
@@ -207,7 +207,6 @@ function start() {
         road2Line1Div.y = x * (road1.height/numLines);
         road2Line1Div.style.top = (x*(road1.height/numLines)) + 'px';
         P2GameArea.appendChild(road2Line1Div);
-
 
         // Creating the lines for the middle and right lanes
 
