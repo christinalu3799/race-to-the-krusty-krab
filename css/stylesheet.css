@@ -89,7 +89,7 @@ button:active {
 }
 /* RACE PAGE ========================================================*/
 .race-page {
-    background-image: url(../images/sand-bg.jpeg);
+    background-image: url('../images/sand-bg.jpeg');
     background-size: cover;
     background-repeat: no-repeat;
 }
