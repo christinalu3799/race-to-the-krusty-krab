@@ -106,9 +106,9 @@ function moveBoatMobiles(pattyWagon1, pattyWagon2) {
             // gameOver.setAttribute('class','game-over');
             // let racePage = document.querySelector('.race-page');
             // racePage.appendChild(gameOver);
-
-            window.location.replace('../game-over.html');
-            return -1;
+            cancelAnimationFrame(myReq);
+            window.location.href = '../game-over.html';
+            
         }
         if(b.y > road1.height + b.height) {
             b.y -= road1.height;
@@ -118,7 +118,7 @@ function moveBoatMobiles(pattyWagon1, pattyWagon2) {
         b.style.top = b.y + 'px';
     })
 }
-
+let myReq;
 // This function allows the cars to move according to the keypress
 function playGame() {
 
@@ -171,7 +171,7 @@ function playGame() {
         pattyWagon2.style.top = player.y2 + 'px';
 
         // Recursively calling the playGame function again to keep the cars moving
-        window.requestAnimationFrame(playGame);
+        myReq = window.requestAnimationFrame(playGame);
     }
 }
 
