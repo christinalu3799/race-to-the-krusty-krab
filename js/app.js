@@ -102,10 +102,7 @@ function moveBoatMobiles(pattyWagon1, pattyWagon2) {
         };
         
         if(stillInGame.P1 === false && stillInGame.P2 === false) {
-            // let gameOver = document.createElement('div');
-            // gameOver.setAttribute('class','game-over');
-            // let racePage = document.querySelector('.race-page');
-            // racePage.appendChild(gameOver);
+            // Stop animation frame 
             cancelAnimationFrame(myReq);
             window.location.href = '../game-over.html';
             
