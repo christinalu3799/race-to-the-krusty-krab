@@ -37,7 +37,7 @@ h1 {
 
 .home-bg {
     height: 100vh;
-    background-image: url("/images/home-bg.png");
+    background-image: url(../images/home-bg.png);
     background-size: cover;
     background-repeat: no-repeat;
 }
