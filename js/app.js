@@ -4,7 +4,7 @@ let P2GameArea = document.querySelector('.road2');
 
 // Create a player object to define the speed of the cars
 let player = {
-    speed:2,
+    speed: 5,
 };
 
 // Create a keys object to keep track of the keys the players will use to move the cars
@@ -74,30 +74,42 @@ let stillInGame = {
 
 // Functions to display 'GAME OVER' message
 function lost() {  
+   
     if(!stillInGame.P1) { 
-        let lost = document.createElement('div');
-        lost.setAttribute('class', 'lost-msg');
-        player1.appendChild(lost); 
-    }
+        let lost1 = document.createElement('div');
+        lost1.setAttribute('class', 'lost-msg');
+        player1.appendChild(lost1); 
+        console.log(stillInGame);
+    } 
     if(!stillInGame.P2) {
-        let lost = document.createElement('div');
-        lost.setAttribute('class', 'lost-msg');
-        player2.appendChild(lost); 
+        let lost2 = document.createElement('div');
+        lost2.setAttribute('class', 'lost-msg');
+        player2.appendChild(lost2); 
+        console.log(stillInGame);
     }  
 }
 // Generate and move boatmobiles 
 function moveBoatMobiles(pattyWagon1, pattyWagon2) {
     let boat = document.querySelectorAll('.boat-mobile');
     boat.forEach(function (b) {
-        if(crash(pattyWagon1, b) && stillInGame.P1) {
+        if(crash(pattyWagon1, b) && stillInGame.P1 === true) {
             stillInGame.P1 = false;
             lost();
         };
-        if(crash(pattyWagon2, b) && stillInGame.P2) {
+        if(crash(pattyWagon2, b) && stillInGame.P2 === true) {
             stillInGame.P2 = false;
             lost();
         };
-       
+        
+        if(stillInGame.P1 === false && stillInGame.P2 === false) {
+            // let gameOver = document.createElement('div');
+            // gameOver.setAttribute('class','game-over');
+            // let racePage = document.querySelector('.race-page');
+            // racePage.appendChild(gameOver);
+
+            window.location.replace('../game-over.html');
+            return -1;
+        }
         if(b.y > road1.height + b.height) {
             b.y -= road1.height;
             // b.style.left = Math.floor(Math.random()*road1.width) +'px';
@@ -135,7 +147,7 @@ function playGame() {
         }
         // Stay within the width of the road
         // Subtract 155px to prevent half of patty wagon from getting cut off
-        if(keys.d && player.x1 < (road1.width - 135)) {
+        if(keys.d && player.x1 < (road1.width - 130)) {
             player.x1 += player.speed
         }
     
@@ -149,7 +161,7 @@ function playGame() {
         if(keys.ArrowLeft && player.x2 > 0) {
             player.x2 -= player.speed
         }
-        if(keys.ArrowRight && player.x2 < road2.width - 135) {
+        if(keys.ArrowRight && player.x2 < road2.width - 130) {
             player.x2 += player.speed
         }
 
@@ -231,11 +243,12 @@ function start() {
     player.y2 = pattyWagon2.offsetTop;
 
     // Generate random boat-mobiles 
-    let lanePositions = [55, 195, 350]
+    let lanePositions = [55, 195, 350];
     let numBoatMobiles = 20;
-    for(let x = 0; x < numBoatMobiles; x++) {
-        // Creating Boatmobiles for Player 1
 
+    for(let x = 0; x < numBoatMobiles; x++) {
+
+        // Creating Boatmobiles for Player 1
         // Creating new element for boat mobiles
         let boatMobile1 = document.createElement('div');
         boatMobile1.classList.add('boat-mobile');
@@ -253,5 +266,7 @@ function start() {
         boatMobile2.style.top = boatMobile2.y + 'px';
         boatMobile2.style.left =lanePositions[Math.floor(Math.random()*3)] +'px';
         P2GameArea.appendChild(boatMobile2);
+
     }
+    
 }
