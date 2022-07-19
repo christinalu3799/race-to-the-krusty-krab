@@ -217,5 +217,5 @@ body.gameover-pg a {
 }
 
 .animate__animated.animate__fadeInDown {
-    --animate-duration: 6s;
+    --animate-duration: 4s;
 }

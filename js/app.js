@@ -4,7 +4,7 @@ let P2GameArea = document.querySelector('.road2');
 
 // Create a player object to define the speed of the cars
 let player = {
-    speed: 5,
+    speed: 4,
 };
 
 // Create a keys object to keep track of the keys the players will use to move the cars
@@ -182,12 +182,31 @@ function pressOff(e) {
     keys[e.key] = false;
 }
 
+// Countdown Function
+function countdown() {
+    let num = 3;
+    let gameCountdown = setInterval(function() {
+        console.log(num);
+        num--;
+        if(num === 0) {
+            console.log('GO!');
+            clearInterval(gameCountdown);
+        }
+    },1000);
+
+    // Start game after 5 seconds 
+    setTimeout(function() {
+        window.requestAnimationFrame(playGame);
+        player.start = true;
+    },5000);
+    
+}
+
+
 // This function loads as soon as the player gets onto the game page
 // the start() function calls the playGame function
 function start() {
-    window.requestAnimationFrame(playGame);
-    player.start = true;
-
+    
     // Generate the road lines. Iterating 8 times for 8 lines
     let numLines = 8;
     for(let x=0; x < numLines;x++) {
@@ -243,7 +262,7 @@ function start() {
     let numBoatMobiles = 20;
 
     for(let x = 0; x < numBoatMobiles; x++) {
-
+        console.log(x)
         // Creating Boatmobiles for Player 1
         // Creating new element for boat mobiles
         let boatMobile1 = document.createElement('div');
@@ -264,5 +283,5 @@ function start() {
         P2GameArea.appendChild(boatMobile2);
 
     }
-    
+    countdown();
 }
