@@ -91,6 +91,10 @@ button:active {
     background-color: rgb(123, 211, 113);
 }
 /* RACE PAGE ========================================================*/
+.theme-song {
+    display: none;
+}
+
 .race-page {
     background-image: url(../images/sand-bg.jpeg);
     background-size: cover;
