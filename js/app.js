@@ -185,10 +185,9 @@ function pressOff(e) {
 function countdown() {
     let num = 3;
     
-    
+    let counter = document.createElement('h1');
     let gameCountdown = setInterval(function() {
-        let counter = document.createElement('h1');
-        counter.setAttribute('class','.countdown');
+        // Create new h1 element for the countdown #s
         counter.innerHTML = `${num}`;
         let countdownBox = document.querySelector('.countdown-box');
         countdownBox.appendChild(counter);
@@ -199,22 +198,21 @@ function countdown() {
             // Hide countdown numbers after get to zero
             setTimeout(function() {
                 countdownBox.style.display = 'none';
-            }, 2000);
+            }, 1500);
         }
         num--;
+        
     },1000);
 
-    
-    
+
     // Start game after 5 seconds 
     setTimeout(function() {
         window.requestAnimationFrame(playGame);
         player.start = true;
 
-    },5000);
+    },5500);
     
 }
-
 
 // This function loads as soon as the player gets onto the game page
 // the start() function calls the playGame function
