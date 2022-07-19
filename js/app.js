@@ -100,13 +100,12 @@ function moveBoatMobiles(pattyWagon1, pattyWagon2) {
             stillInGame.P2 = false;
             lost();
         };
-        
-        if(stillInGame.P1 === false && stillInGame.P2 === false) {
-            // Stop animation frame 
-            cancelAnimationFrame(myReq);
-            window.location.href = './game-over.html';
-            
-        }
+        // If both players lose, change to Game Over page
+        // if(stillInGame.P1 === false && stillInGame.P2 === false) {
+        //     // Stop animation frame 
+        //     cancelAnimationFrame(myReq);
+        //     window.location.href = './game-over.html';
+        // }
         if(b.y > road1.height + b.height) {
             b.y -= road1.height;
             // b.style.left = Math.floor(Math.random()*road1.width) +'px';
@@ -185,19 +184,33 @@ function pressOff(e) {
 // Countdown Function
 function countdown() {
     let num = 3;
+    
+    
     let gameCountdown = setInterval(function() {
-        console.log(num);
-        num--;
+        let counter = document.createElement('h1');
+        counter.setAttribute('class','.countdown');
+        counter.innerHTML = `${num}`;
+        let countdownBox = document.querySelector('.countdown-box');
+        countdownBox.appendChild(counter);
         if(num === 0) {
-            console.log('GO!');
+            counter.innerHTML = `GO!`;
+            countdownBox.appendChild(counter);
             clearInterval(gameCountdown);
+            // Hide countdown numbers after get to zero
+            setTimeout(function() {
+                countdownBox.style.display = 'none';
+            }, 2000);
         }
+        num--;
     },1000);
 
+    
+    
     // Start game after 5 seconds 
     setTimeout(function() {
         window.requestAnimationFrame(playGame);
         player.start = true;
+
     },5000);
     
 }
