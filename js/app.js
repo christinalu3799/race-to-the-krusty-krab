@@ -6,8 +6,10 @@ let P2GameArea = document.querySelector('.road2');
 let player = {
     speed: 4,
 };
-
+console.log(player.speed);
+// ====================================================================================
 // Create a keys object to keep track of the keys the players will use to move the cars
+// ====================================================================================
 let keys = {
     // PLAYER 1 CONTROLS
     w: false, 
@@ -44,8 +46,9 @@ function animateRoadLines() {
         line.style.top = line.y + 'px';
     })
 }
-
+// ====================================================================================
 // Function to detect if player has collided with other boat mobiles 
+// ====================================================================================
 function crash(pattywagon, boatmobile) {
     
 let pattywagonRect = pattywagon.getBoundingClientRect();
@@ -65,14 +68,16 @@ let player2 = document.querySelector('.player2');
 // Bound each patty wagon within the road area 
 let road1 = P1GameArea.getBoundingClientRect();
 let road2 = P2GameArea.getBoundingClientRect();
-
+// ====================================================================================
 // Make tracker to keep track of who is still in the game
+// ====================================================================================
 let stillInGame = { 
     P1: true,
     P2: true
 };
-
-// Functions to display 'GAME OVER' message
+// ====================================================================================
+// Function to display 'GAME OVER' message
+// ====================================================================================
 function lost() {  
    
     if(!stillInGame.P1) { 
@@ -101,11 +106,11 @@ function moveBoatMobiles(pattyWagon1, pattyWagon2) {
             lost();
         };
         // If both players lose, change to Game Over page
-        if(stillInGame.P1 === false && stillInGame.P2 === false && timerGoing === true) {
-            // Stop animation frame 
-            cancelAnimationFrame(myReq);
-            window.location.href = './game-over.html';
-        }
+        // if(stillInGame.P1 === false && stillInGame.P2 === false && timerGoing === true) {
+        //     // Stop animation frame 
+        //     cancelAnimationFrame(myReq);
+        //     window.location.href = './game-over.html';
+        // }
         if(b.y > road1.height + b.height) {
             b.y -= road1.height;
             // b.style.left = Math.floor(Math.random()*road1.width) +'px';
@@ -115,8 +120,9 @@ function moveBoatMobiles(pattyWagon1, pattyWagon2) {
     })
 }
 let myReq;
-
+// ====================================================================================
 // This function allows the cars to move according to the keypress
+// ====================================================================================
 function playGame() {
 
     let pattyWagon1 = document.querySelector('.pattyWagon1');
@@ -181,12 +187,14 @@ function pressOff(e) {
     e.preventDefault();
     keys[e.key] = false;
 }  
-
+// ====================================================================================
 // Timer function that counts down when race has begun
+// ====================================================================================
 let timerGoing = true;
 function raceTimer() {
-    let time = 15;
+    let time = 5;
     let timerElement = document.createElement('h1');
+    
     let timerBox = document.querySelector('.timerBox');
     let timer = setInterval(function () {
         if(time >= 0) {
@@ -196,7 +204,6 @@ function raceTimer() {
                 timerBox.appendChild(timerElement);
                 time--;
             }
-            
         } 
         if(time === 0 ) {
             // Check if both players are still in the game
@@ -213,9 +220,12 @@ function raceTimer() {
                 timerBox.appendChild(a);
 
             } else {
+                // If only 1 player is still in the game
                 timerElement.innerHTML = stillInGame.P1 === true ? 'Player 1 Wins!' : 'Player 2 Wins!';
+
                 timerBox.appendChild(timerElement);
                 timerGoing = false;
+                
                 // Make restart button
                 let restartbtn = document.createElement('button');
                 restartbtn.innerHTML = 'Play Again';
@@ -228,7 +238,17 @@ function raceTimer() {
         }
     }, 1000);
 }
+
+// ====================================================================================
+// Select Difficulty Function
+// ====================================================================================
+function selectDifficulty() {
+    alert('choose difficulty'); 
+    countdown();
+}
+// ====================================================================================
 // Countdown Function
+// ====================================================================================
 function countdown() {
     let num = 3;
     
@@ -259,9 +279,10 @@ function countdown() {
     },5500);
     
 }
-
+// ====================================================================================
 // This function loads as soon as the player gets onto the game page
 // the start() function calls the playGame function
+// ====================================================================================
 function start() {
     
     // Generate the road lines. Iterating 8 times for 8 lines
@@ -340,5 +361,5 @@ function start() {
         P2GameArea.appendChild(boatMobile2);
 
     }
-    countdown();
+    selectDifficulty();
 }
