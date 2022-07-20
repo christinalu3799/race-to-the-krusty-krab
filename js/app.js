@@ -92,20 +92,20 @@ function lost() {
 function moveBoatMobiles(pattyWagon1, pattyWagon2) {
     let boat = document.querySelectorAll('.boat-mobile');
     boat.forEach(function (b) {
-        if(crash(pattyWagon1, b) && stillInGame.P1 === true) {
+        if(crash(pattyWagon1, b) && stillInGame.P1 === true && timerGoing === true) {
             stillInGame.P1 = false;
             lost();
         };
-        if(crash(pattyWagon2, b) && stillInGame.P2 === true) {
+        if(crash(pattyWagon2, b) && stillInGame.P2 === true && timerGoing === true) {
             stillInGame.P2 = false;
             lost();
         };
         // If both players lose, change to Game Over page
-        // if(stillInGame.P1 === false && stillInGame.P2 === false) {
-        //     // Stop animation frame 
-        //     cancelAnimationFrame(myReq);
-        //     window.location.href = './game-over.html';
-        // }
+        if(stillInGame.P1 === false && stillInGame.P2 === false && timerGoing === true) {
+            // Stop animation frame 
+            cancelAnimationFrame(myReq);
+            window.location.href = './game-over.html';
+        }
         if(b.y > road1.height + b.height) {
             b.y -= road1.height;
             // b.style.left = Math.floor(Math.random()*road1.width) +'px';
@@ -115,6 +115,7 @@ function moveBoatMobiles(pattyWagon1, pattyWagon2) {
     })
 }
 let myReq;
+
 // This function allows the cars to move according to the keypress
 function playGame() {
 
@@ -182,20 +183,49 @@ function pressOff(e) {
 }  
 
 // Timer function that counts down when race has begun
+let timerGoing = true;
 function raceTimer() {
-    let time = 10;
+    let time = 15;
     let timerElement = document.createElement('h1');
     let timerBox = document.querySelector('.timerBox');
     let timer = setInterval(function () {
         if(time >= 0) {
             // Continue timer as long as one player is still in the game
             if(stillInGame.P1 === true || stillInGame.P2 === true) {
-                timerElement.innerHTML = `${time}`;
+                timerElement.innerHTML = `${time}s`;
                 timerBox.appendChild(timerElement);
                 time--;
             }
             
-        } else clearInterval(timer);
+        } 
+        if(time === 0 ) {
+            // Check if both players are still in the game
+            if(stillInGame.P1 === true && stillInGame.P2 === true) {
+                timerBox.appendChild(timerElement);
+                timerElement.innerHTML = "It's a tie!";
+                timerGoing = false;
+                // Make restart button
+                let restartbtn = document.createElement('button');
+                restartbtn.innerHTML = 'Play Again';
+                let a = document.createElement('a');
+                a.setAttribute('href','./race.html');
+                a.appendChild(restartbtn);
+                timerBox.appendChild(a);
+
+            } else {
+                timerElement.innerHTML = stillInGame.P1 === true ? 'Player 1 Wins!' : 'Player 2 Wins!';
+                timerBox.appendChild(timerElement);
+                timerGoing = false;
+                // Make restart button
+                let restartbtn = document.createElement('button');
+                restartbtn.innerHTML = 'Play Again';
+                let a = document.createElement('a');
+                a.setAttribute('href','./race.html');
+                a.appendChild(restartbtn);
+                timerBox.appendChild(a);
+            }
+            clearInterval(timer);
+        }
     }, 1000);
 }
 // Countdown Function
@@ -227,6 +257,7 @@ function countdown() {
         player.start = true;
         raceTimer();
     },5500);
+    
 }
 
 // This function loads as soon as the player gets onto the game page

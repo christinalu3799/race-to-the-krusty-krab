@@ -170,11 +170,20 @@ button:active {
     text-align: center;
 }
 .race-page .timerBox {
+    color:rgb(212, 21, 21);
+    display: flex; 
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
     position: absolute; 
-    top: 30px;
-    width: 50px; 
+    top: 200px;
+    width: auto; 
     height: 50px; 
-    /* background-color: black; */
+}
+.race-page .timerBox h1 {
+    font-size: 5rem;
+    z-index: 10;
+    margin: 1.5rem;
 }
 /* ROAD LINES ========================================================*/
 .line1 {
