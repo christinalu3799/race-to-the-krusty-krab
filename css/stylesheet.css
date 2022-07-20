@@ -132,6 +132,7 @@ button:active {
     background-size: cover;
     position: absolute;
     bottom: 100px;
+    left: 15px;
     height: 100px;
     width: 110px;
     z-index: 2;
@@ -165,8 +166,15 @@ button:active {
 .race-page .countdown-box h1 { 
     color:rgb(212, 21, 21);
     bottom: 100px;
-    font-size: 5rem;
+    font-size: 7rem;
     text-align: center;
+}
+.race-page .timerBox {
+    position: absolute; 
+    top: 30px;
+    width: 50px; 
+    height: 50px; 
+    /* background-color: black; */
 }
 /* ROAD LINES ========================================================*/
 .line1 {

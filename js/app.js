@@ -138,7 +138,7 @@ function playGame() {
             player.y1 += player.speed
         }
         // x-position must be greater than 0px from the left side of road
-        if(keys.a && player.x1 > 0) {
+        if(keys.a && player.x1 > 15) {
             player.x1 -= player.speed
         }
         // Stay within the width of the road
@@ -154,7 +154,7 @@ function playGame() {
         if(keys.ArrowDown && player.y2 < (road2.bottom - 100)) {
             player.y2 += player.speed
         }
-        if(keys.ArrowLeft && player.x2 > 0) {
+        if(keys.ArrowLeft && player.x2 > 15) {
             player.x2 -= player.speed
         }
         if(keys.ArrowRight && player.x2 < road2.width - 130) {
@@ -179,17 +179,34 @@ function pressOn(e) {
 function pressOff(e) { 
     e.preventDefault();
     keys[e.key] = false;
-}
+}  
 
+// Timer function that counts down when race has begun
+function raceTimer() {
+    let time = 10;
+    let timerElement = document.createElement('h1');
+    let timerBox = document.querySelector('.timerBox');
+    let timer = setInterval(function () {
+        if(time >= 0) {
+            // Continue timer as long as one player is still in the game
+            if(stillInGame.P1 === true || stillInGame.P2 === true) {
+                timerElement.innerHTML = `${time}`;
+                timerBox.appendChild(timerElement);
+                time--;
+            }
+            
+        } else clearInterval(timer);
+    }, 1000);
+}
 // Countdown Function
 function countdown() {
     let num = 3;
     
     let counter = document.createElement('h1');
+    let countdownBox = document.querySelector('.countdown-box');
     let gameCountdown = setInterval(function() {
         // Create new h1 element for the countdown #s
         counter.innerHTML = `${num}`;
-        let countdownBox = document.querySelector('.countdown-box');
         countdownBox.appendChild(counter);
         if(num === 0) {
             counter.innerHTML = `GO!`;
@@ -204,14 +221,12 @@ function countdown() {
         
     },1000);
 
-
-    // Start game after 5 seconds 
+    // Start game after 5 seconds - lines up with end of countdown
     setTimeout(function() {
         window.requestAnimationFrame(playGame);
         player.start = true;
-
+        raceTimer();
     },5500);
-    
 }
 
 // This function loads as soon as the player gets onto the game page
