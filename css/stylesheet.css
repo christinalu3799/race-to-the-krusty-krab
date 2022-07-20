@@ -153,6 +153,7 @@ button:active {
 }
 .race-page .difficulty {
     position: absolute;
+    visibility: visible;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -162,6 +163,11 @@ button:active {
 }
 .race-page .difficulty button {
     margin: 1rem 0;
+    font-size: 2rem;
+}
+.race-page .difficulty button.start {
+    visibility: hidden;
+    background-color: rgb(89, 157, 89);
 }
 .race-page .countdown-box {
     display: flex;

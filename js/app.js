@@ -8,17 +8,36 @@ let P2GameArea = document.querySelector('.road2');
 // Create a player object to define the speed of the cars
 let player = {};
 function selectDifficulty() {
+    let levels = document.querySelectorAll('.lev');
+    console.log(levels);
     let easy  = document.querySelector('.easy');
-    let med  = document.querySelector('.medium');
+    let med  = document.querySelector('.med');
     let hard  = document.querySelector('.hard');
-    easy.addEventListener('click', function() {console.log('easy')} );
-    med.addEventListener('click', function() {console.log('med')});
-    hard.addEventListener('click', function() {console.log('hard')});
-
-    player.speed = 4;
+    let start = document.querySelector('.start');
+    let difficulty = document.querySelector('.difficulty');
+    easy.addEventListener('click', function() {
+        player.speed = 2;
+        start.style.visibility = 'visible';
+        // levels.forEach(l => {
+            
+        // })
+    });
+    med.addEventListener('click', function() {
+        player.speed = 4;
+        start.style.visibility = 'visible';
+    });
+    hard.addEventListener('click', function() {
+        player.speed = 6;
+        start.style.visibility = 'visible';
+    });
 
     // Call countdown function once player has selected level of difficulty 
-    // countdown();
+        start.addEventListener('click', countdown);
+        start.addEventListener('click', function() {
+            difficulty.style.visibility = 'hidden';
+            start.remove();
+        });
+       
 }
 // ====================================================================================
 // Create a keys object to keep track of the keys the players will use to move the cars
