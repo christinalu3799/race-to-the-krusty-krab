@@ -158,8 +158,14 @@ button:active {
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    width: 200px; 
+    width: 250px; 
     height: auto;
+}
+.race-page .difficulty h1{
+    font-size: 2.5rem;
+    color:rgb(212, 21, 21);
+    text-align: center;
+    margin: 1rem 0;
 }
 .race-page .difficulty button {
     margin: 1rem 0;
