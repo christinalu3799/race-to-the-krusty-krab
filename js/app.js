@@ -82,8 +82,7 @@ function animateRoadLines() {
 // ====================================================================================
 // Function to detect if player has collided with other boat mobiles 
 // ====================================================================================
-function crash(pattywagon, boatmobile) {
-    
+function crash(pattywagon, boatmobile) {   
 let pattywagonRect = pattywagon.getBoundingClientRect();
 let boatmobileRect = boatmobile.getBoundingClientRect();
     return !(
@@ -109,10 +108,9 @@ let stillInGame = {
     P2: true
 };
 // ====================================================================================
-// Function to display 'GAME OVER' message
+// Function to display 'GAME OVER' message if BOTH players lose
 // ====================================================================================
 function lost() {  
-   
     if(!stillInGame.P1) { 
         let lost1 = document.createElement('div');
         lost1.setAttribute('class', 'lost-msg');
@@ -225,9 +223,9 @@ function pressOff(e) {
 // ====================================================================================
 let timerGoing = true;
 function raceTimer() {
+    // Length of game in seconds
     let time = 30;
     let timerElement = document.createElement('h1');
-    
     let timerBox = document.querySelector('.timerBox');
     let timer = setInterval(function () {
         if(time >= 0) {
@@ -251,7 +249,6 @@ function raceTimer() {
                 a.setAttribute('href','./race.html');
                 a.appendChild(restartbtn);
                 timerBox.appendChild(a);
-
             } else {
                 // If only 1 player is still in the game
                 timerElement.innerHTML = stillInGame.P1 === true ? 'Player 1 Wins!' : 'Player 2 Wins!';
@@ -272,13 +269,12 @@ function raceTimer() {
     }, 1000);
 }
 
-
 // ====================================================================================
 // Countdown Function
 // ====================================================================================
 function countdown() {
+    // Count down from 3 before the game starts
     let num = 3;
-    
     let counter = document.createElement('h1');
     let countdownBox = document.querySelector('.countdown-box');
     let gameCountdown = setInterval(function() {
@@ -294,8 +290,7 @@ function countdown() {
                 countdownBox.style.display = 'none';
             }, 1500);
         }
-        num--;
-        
+        num--;   
     },1000);
 
     // Start game after 5 seconds - lines up with end of countdown
@@ -311,12 +306,11 @@ function countdown() {
 // the start() function calls the playGame function
 // ====================================================================================
 function start() {
-    
     // Generate the road lines. Iterating 8 times for 8 lines
     let numLines = 8;
     for(let x=0; x < numLines;x++) {
-        // Creating the lines for the left and middle lanes
 
+        // Creating the lines for the left and middle lanes
         // PLAYER 1 ----------------------------------------------
         let road1Line1Div = document.createElement('div');
         road1Line1Div.classList.add('line1');
@@ -333,7 +327,6 @@ function start() {
         P2GameArea.appendChild(road2Line1Div);
 
         // Creating the lines for the middle and right lanes
-
         // PLAYER 1 ----------------------------------------------
         let road1Line2Div = document.createElement('div');
         road1Line2Div.classList.add('line2');
@@ -386,7 +379,6 @@ function start() {
         boatMobile2.style.top = boatMobile2.y + 'px';
         boatMobile2.style.left =lanePositions[Math.floor(Math.random()*3)] +'px';
         P2GameArea.appendChild(boatMobile2);
-
     }
     selectDifficulty();
 }
