@@ -2,11 +2,24 @@
 let P1GameArea = document.querySelector('.road1');
 let P2GameArea = document.querySelector('.road2');
 
+// ====================================================================================
+// Select Difficulty Function
+// ====================================================================================
 // Create a player object to define the speed of the cars
-let player = {
-    speed: 4,
-};
-console.log(player.speed);
+let player = {};
+function selectDifficulty() {
+    let easy  = document.querySelector('.easy');
+    let med  = document.querySelector('.medium');
+    let hard  = document.querySelector('.hard');
+    easy.addEventListener('click', function() {console.log('easy')} );
+    med.addEventListener('click', function() {console.log('med')});
+    hard.addEventListener('click', function() {console.log('hard')});
+
+    player.speed = 4;
+
+    // Call countdown function once player has selected level of difficulty 
+    // countdown();
+}
 // ====================================================================================
 // Create a keys object to keep track of the keys the players will use to move the cars
 // ====================================================================================
@@ -106,11 +119,11 @@ function moveBoatMobiles(pattyWagon1, pattyWagon2) {
             lost();
         };
         // If both players lose, change to Game Over page
-        // if(stillInGame.P1 === false && stillInGame.P2 === false && timerGoing === true) {
-        //     // Stop animation frame 
-        //     cancelAnimationFrame(myReq);
-        //     window.location.href = './game-over.html';
-        // }
+        if(stillInGame.P1 === false && stillInGame.P2 === false && timerGoing === true) {
+            // Stop animation frame 
+            cancelAnimationFrame(myReq);
+            window.location.href = './game-over.html';
+        }
         if(b.y > road1.height + b.height) {
             b.y -= road1.height;
             // b.style.left = Math.floor(Math.random()*road1.width) +'px';
@@ -239,13 +252,7 @@ function raceTimer() {
     }, 1000);
 }
 
-// ====================================================================================
-// Select Difficulty Function
-// ====================================================================================
-function selectDifficulty() {
-    alert('choose difficulty'); 
-    countdown();
-}
+
 // ====================================================================================
 // Countdown Function
 // ====================================================================================

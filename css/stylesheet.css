@@ -151,7 +151,18 @@ button:active {
     width: 60px;
     height: 160px;
 }
-
+.race-page .difficulty {
+    position: absolute;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 200px; 
+    height: auto;
+}
+.race-page .difficulty button {
+    margin: 1rem 0;
+}
 .race-page .countdown-box {
     display: flex;
     flex-direction: column;
