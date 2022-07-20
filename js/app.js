@@ -6,6 +6,7 @@ let P2GameArea = document.querySelector('.road2');
 // Select Difficulty Function
 // ====================================================================================
 // Create a player object to define the speed of the cars
+// This is my "game" object as specified in the project requirements
 let player = {};
 function selectDifficulty() {
     let levels = document.querySelectorAll('.lev');
@@ -224,7 +225,7 @@ function pressOff(e) {
 // ====================================================================================
 let timerGoing = true;
 function raceTimer() {
-    let time = 5;
+    let time = 30;
     let timerElement = document.createElement('h1');
     
     let timerBox = document.querySelector('.timerBox');
