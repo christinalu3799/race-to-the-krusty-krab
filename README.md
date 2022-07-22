@@ -6,7 +6,7 @@ This is a simple 2-player racing game made with HTML, CSS, and vanilla JavaScrip
 
 ## How do you play? 
 
-[Click here to be directed to the game!(https://christinalu.me/race-to-the-krusty-krab/)
+[Click here to be directed to the game!](https://christinalu.me/race-to-the-krusty-krab/)
 
 Alternatively, you can clone this repo onto your local machine and play the game through your live server. 
 
