@@ -10,7 +10,6 @@ let P2GameArea = document.querySelector('.road2');
 let player = {};
 function selectDifficulty() {
     let levels = document.querySelectorAll('.lev');
-    console.log(levels);
     let easy  = document.querySelector('.easy');
     let med  = document.querySelector('.med');
     let hard  = document.querySelector('.hard');
@@ -19,9 +18,6 @@ function selectDifficulty() {
     easy.addEventListener('click', function() {
         player.speed = 2;
         start.style.visibility = 'visible';
-        // levels.forEach(l => {
-            
-        // })
     });
     med.addEventListener('click', function() {
         player.speed = 4;
@@ -31,7 +27,6 @@ function selectDifficulty() {
         player.speed = 6;
         start.style.visibility = 'visible';
     });
-
     // Call countdown function once player has selected level of difficulty 
         start.addEventListener('click', countdown);
         start.addEventListener('click', function() {
