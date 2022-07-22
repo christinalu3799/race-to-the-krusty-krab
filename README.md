@@ -12,9 +12,9 @@ Alternatively, you can clone this repo onto your local machine and play the game
 
 ## Approach 
 
-In this project, I used simple vanilla javascript to interact with the elements in the game. I implemented a main function called `start()` which is invoked once the game page loads. This function sets up the road, road lines, patty wagons, and boat mobiles. Then, the `selectDifficulty()` function is called to allow users to choose a level. After the user hits the "Start" button, the game will begin with a countdown via the `countdown()` function which then called the `playGame()` function. 
+In this project, I used simple vanilla javascript to interact with the elements in the game. A main function called `start()` is invoked once the game page loads. This function sets up the road, road lines, patty wagons, and boat mobiles. Then, the `selectDifficulty()` function is called to allow users to choose a level. After the user hits the "Start" button, the game will begin with a countdown via the `countdown()` function which then calls the `playGame()` function that bounds the patty wagons within the road. 
 
-During the game, I used event listeners to move the patty wagon whenever the user presses the corresponding keys. In using the `.getBoundingClientRect()` method, I was able to set up conditions to detect when the users' patty wagon collided with the boat mobiles. If any of these conditions were met, then the game would end for that corresponding player.
+During the game, I used event listeners to move the patty wagon whenever the user presses the corresponding keys. In using the `.getBoundingClientRect()` method, I was able to set up conditions to detect when the users' patty wagon collided with the boat mobiles. If any of these conditions were met, then the game would end for that corresponding player. `window.RequestAnimationFrame()` recursively calls the `playGame` to create the on screen animations of the road lines and moving cars. This is the key method that drives the entire game and creates the effects between the players' patty wagons, boat mobiles, and road lines.
 
 ## Wire Frames
 
@@ -32,5 +32,8 @@ Check out the wire frames I created using Figma [here](https://www.figma.com/fil
 * When the timer ends and both users are still in the game, then the game will announce that it's a tie. Users will have the option to play again. 
 * If both players result in a game over before the timer ends, the game will be directed to a game over page where users can either play again or go back to the home page. 
 
+## Forthcoming Features 
+
+I hope to add sound effects to indicate when the player has hit another car. I also want to add more visual elements along the sides of the road to create a more realistic feel of a player driving up a road. 
 
 
